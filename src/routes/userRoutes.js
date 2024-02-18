@@ -6,7 +6,5 @@ const verifyToken = require("../middlewares/auth")
 // Routes for users
 router.get("/", verifyToken, userController.getAllUsers)
 router.get("/users-todos", verifyToken, userController.getAllUsersTodos)
-router.post("/login", userController.loginUser)
-router.post("/register", userController.registerUser)
 
 module.exports = router
