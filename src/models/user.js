@@ -38,6 +38,16 @@ const createUserModel = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 1,
       },
+      reset_token: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null,
+      },
+      reset_token_expiration: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: null,
+      },
     },
     {
       timestamps: true,
