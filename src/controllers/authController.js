@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
     res.status(200).json({
       message: "User created successfully",
       status: 'success',
-      data: createdUser,
+      data: createdUser?.email,
     })
   } catch (error) {
     if (error.errors) {
@@ -54,11 +54,14 @@ const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ sub: usernameOrEmail }, process.env.SERVER_JWT_SECRET , { expiresIn: '1h' });
+
+    const { active, firstname, lastname, email, username, created_at } = user
+
     res.status(200).json({
       message: "Login successful",
       status: 'success',
       data: {
-        access_token: token, token_type: 'Bearer', expires_in: 3600,
+        access_token: token, token_type: 'Bearer', expires_in: 3600, user: { active, firstname, lastname, email, username, created_at }
       },
     })
 
